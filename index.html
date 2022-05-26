@@ -18,23 +18,33 @@
 
         <!-- Content -->
         <article class="content">
-            <h1 class="content__title">Search GitHub users</h1>
+            <h1 class="content__title">Buscar usuarios de gitHub</h1>
             <p>{{message}}</p>
 
             <!-- Search -->
-            <form class="search">
-                <input type="text" class="search__input" required placeholder="Search GitHub users">
-                <input type="submit" class="search__submit" value="Search">
+            <form class="search" v-on:submit.prevent="Buscar">
+                <input v-model="busqueda" type="text" class="search__input" required placeholder="Search GitHub users">
+                <input type="submit" class="search__submit" value="Buscar">
             </form>
 
             <!-- Result -->
+            <div class="result" v-if="result">
+                <div class="result__name">{{result.name}}</div>
+                <img v-bind:src="result.avatar_url" alt="" class="result__avatar">
+                <p class="result__bio">{{result.bio}}
+                    <br>
+                    <a href="www.sena.edu.co" class="result__blog">ww.sena.edu.co</a>
+                </p>
+            </div>
+            <!-- Cuando no habido busqueda  -->
+            <p v-else>Esperando la busquueda</p>
             <!-- Error -->
-            <div class="result__error"></div>
+            <div v-if="error" class="result__error">Error</div>
         </article>
     </div>
     <script src="js/main.js"></script>
     <script>
-        const mountedApp = app.mount("#app")
+        const mountedApp = app1.mount("#app")
     </script>
 </body>
 
