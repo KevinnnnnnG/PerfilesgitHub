@@ -14,6 +14,12 @@
     <div id="app">
         <!-- Favorites -->
         <div class="favorites">
+            <!-- ya que todos favoritos devuelve un array-->
+            <div class="favorite" v-for="alias in TodosFavoritos">
+                <a href="">
+                    <img v-bind:src="alias.avatar_url" alt="" class="favorite__avatar">
+                </a>
+            </div>
         </div>
 
         <!-- Content -->
@@ -29,11 +35,13 @@
 
             <!-- Result -->
             <div class="result" v-if="result">
+                <a v-if="estaFavoritos" class="result__toggle-favorite" href="" @click.prevent="RemoveraFavorito">Borrar favoritos <img src="img/eliminar.png" alt="" width="30" height="30"></a>
+                <a v-else class="result__toggle-favorite" href="" v-on:click.prevent="addFavorito">Añadir favoritos <img src="img/agregar.png" alt="" width="30" height="30"></a>
                 <div class="result__name">{{result.name}}</div>
                 <img v-bind:src="result.avatar_url" alt="" class="result__avatar">
                 <p class="result__bio">{{result.bio}}
                     <br>
-                    <a href="www.sena.edu.co" class="result__blog">ww.sena.edu.co</a>
+                    <a target="_blank" v-bind:href="result.html_url" class="result__blog">Perfil de Git Hub</a>
                 </p>
             </div>
             <!-- Cuando no habido busqueda  -->
